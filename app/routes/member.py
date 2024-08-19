@@ -1,8 +1,8 @@
-from fastapi import APIRouter, Request, FastAPI
+from fastapi import APIRouter, Request
 from starlette.responses import HTMLResponse
 from starlette.templating import Jinja2Templates
 
-app = FastAPI()
+
 member_router = APIRouter()
 templates = Jinja2Templates(directory='views//templates')
 
