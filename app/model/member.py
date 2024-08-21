@@ -9,7 +9,7 @@ class Member(Base):
     __tablename__ = 'member'
 
     mno: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, index=True)
-    userid = Mapped[str] = mapped_column(index=True)
+    userid: Mapped[str] = mapped_column(index=True)
     passwd: Mapped[str]
     name: Mapped[str]
     email: Mapped[str]
