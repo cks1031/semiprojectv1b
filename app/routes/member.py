@@ -52,6 +52,11 @@ async def loginok(req: Request, db: Session = Depends(get_db)):
         print(f'loginok 오류 : {str(ex)}')
         return RedirectResponse(url='/member/error', status_code=303)
 
+@member_router.get('/logout', response_class=HTMLResponse)
+async def error(req: Request):
+    req.session.clear()     # 생성된 세션객체 제거
+    return RedirectResponse('/', status_code=303)
+
 @member_router.get('/myinfo', response_class=HTMLResponse)
 async def myinfo(req: Request):
     return templates.TemplateResponse('/member/myinfo.html',{'request': req})
@@ -59,3 +64,7 @@ async def myinfo(req: Request):
 @member_router.get('/error', response_class=HTMLResponse)
 async def error(req: Request):
     return templates.TemplateResponse('/member/error.html',{'request': req})
+
+@member_router.get('/loginfail', response_class=HTMLResponse)
+async def error(req: Request):
+    return templates.TemplateResponse('/member/loginfail.html',{'request': req})
