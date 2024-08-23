@@ -8,7 +8,7 @@ from app.schema.member import NewMember
 from app.service.member import MemberService
 
 member_router = APIRouter()
-templates = Jinja2Templates(directory='views//templates')
+templates = Jinja2Templates(directory='views/templates')
 
 @member_router.get('/join', response_class=HTMLResponse)
 async def join(req: Request):
