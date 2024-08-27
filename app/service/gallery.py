@@ -1,9 +1,8 @@
 import os
 
 from fastapi import Form
-from sqlalchemy import insert, select
+from sqlalchemy import insert, select, distinct, func
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.orm import aliased
 
 from app.model.gallery import Gallery, GalAttach
 from app.schema.gallery import NewGallery
@@ -58,11 +57,19 @@ class GalleryService:
 
     @staticmethod
     def select_gallery(cpg , db):
+        # select distinct g.gno, title, userid, g.regdate, views,
+        # first_value(fname) over (partition by g.gno) fname
+        # from gallery g join galattach ga
+        # on g.gno = ga.gano
+        # order by g.gno desc;
         try:
-            stmt = select(Gallery.gno, Gallery.title, Gallery.userid,
-                          Gallery.regdate, Gallery.views, GalAttach.fname)\
-                .join_from(Gallery, GalAttach)\
-                .order_by(Gallery.gno.desc()).limit(25)
+            stmt = select(distinct(Gallery.gno).label('gno'),
+                          Gallery.title, Gallery.userid,
+                          Gallery.regdate, Gallery.views,
+                        func.first_value(GalAttach.fname)
+                        .over(partition_by=Gallery.gno).label('fname'))\
+                        .join_from(Gallery, GalAttach)\
+                        .order_by(Gallery.gno.desc()).limit(25)
             result = db.execute(stmt)
 
             return result
