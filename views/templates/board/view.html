@@ -26,13 +26,10 @@
 <main>
     <h2>게시판 본문보기</h2>
     <table>
-        <tr><th>제 목</th><td>시간은 금이라구, 친구!</td></tr>
-        <tr><th>작성자</th><td>siestageek</td></tr>
-        <tr><th>작성일</th><td>2024-05-05 12:45:05</td></tr>
-        <tr><th>본 문</th><td>시간은 금이라구, 친구!시간은 금이라구,시간은 금이라구, 친구!시간은 금이라구,시간은 금이라구, 친구!시간은 금이라구,
-            시간은 금이라구, 친구!시간은 금이라구,시간은 금이라구, 친구!시간은 금이라구,시간은 금이라구, 친구!시간은 금이라구,시간은 금이
-            시간은 금이라구, 친구!시간은 금이라구,시간은 금이라구, 친구!시간은 금이라구,시간은 금이라구, 친구!시간은 금이라구,시간은 금이라구,
-            시간은 금이라구, 친구!시간은 금이라구,시간은 금이라구, 친구!시간은 금이라구,시간은 금이라구, 친구!시간은 금이라구,</td></tr>
+        <tr><th>제 목</th><td>{{ boards.title }}</td></tr>
+        <tr><th>작성자</th><td>{{ boards.userid }}</td></tr>
+        <tr><th>작성일</th><td>{{ boards.regdate }} ({{ boards.views }})</td></tr>
+        <tr><th>본 문</th><td>{{ boards.contents }}</td></tr>
         <tr><td colspan="2">
             <button type="button" id="listbtn" onclick="location.href='/board/list'">리스트로</button>
             <button type="button" id="mdfybtn" onclick="location.href='/board/modify'">수정하기</button>
