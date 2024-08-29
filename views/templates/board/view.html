@@ -31,7 +31,7 @@
         <tr><th>작성일</th><td>{{ boards.regdate }} ({{ boards.views }})</td></tr>
         <tr><th>본 문</th><td>{{ boards.contents }}</td></tr>
         <tr><td colspan="2">
-            <button type="button" id="listbtn" onclick="location.href='/board/list'">리스트로</button>
+            <button type="button" id="listbtn" onclick="location.href='/board/list/1'">리스트로</button>
             <button type="button" id="mdfybtn" onclick="location.href='/board/modify'">수정하기</button>
             <button type="button" id="rmvbtn">삭제하기</button>
         </td></tr>
@@ -41,25 +41,17 @@
     <h3 class="offset-2"><i class="bi bi-chat-dots-fill"></i> 나도 한마디</h3>
 
     <table class="offset-3" id="comtlist">
-        <tr><td><h4>abc123</h4></td>
-            <td><div class="cmtbg">2024.12.01
+        {% for rp in boards.replys %}
+        <tr><td><h4>{{ rp.userid }}</h4></td>
+            <td><div class="cmtbg">{{ rp.regdate }}
                 <span class="pushend"><a href="#">[추가]</a></span></div>
-                <p>댓글댓글댓글댓글</p></td></tr>
+                <p>{{ rp.reply }}</p></td></tr>
 
-        <tr><td></td><td><div class="rpybg">
-                <span>987xyz</span>
-                <span class="pushend">2024.11.01</span></div>
-                <p>대댓글대댓글대댓글대댓글</p></td></tr>
-
-        <tr><td><h4>987xyz</h4></td>
-            <td><div class="cmtbg">2024.12.01
-                <span class="pushend"><a href="#">[추가]</a></span></div>
-                <p>댓글댓글댓글댓글</p></td></tr>
-
-        <tr><td><h4>zzyzzy</h4></td>
-            <td><div class="cmtbg">2024.12.01
-                <span class="pushend"><a href="#">[추가]</a></span></div>
-                <p>댓글댓글댓글댓글</p></td></tr>
+<!--        <tr><td></td><td><div class="rpybg">-->
+<!--                <span>987xyz</span>-->
+<!--                <span class="pushend">2024.11.01</span></div>-->
+<!--                <p>대댓글대댓글대댓글대댓글</p></td></tr>-->
+        {% endfor %}
     </table> <!-- 댓글목록 -->
 
     <div class="row offset-2 col-8 pushbtm">
