@@ -30,7 +30,7 @@
         <th>작성일</th> <td>{{boards.regdate}} ({{ boards.views }})</td></tr><tr>
         <th>본문</th><td>{{boards.contents}}</td></tr>
         <tr><td colspan="2">
-                <button type="button" id="listbtn" onclick="location.href='/board/list/1'">리스트로</button>
+                <button type="button" id="listbtn" onclick="location.href='/board/list'">리스트로</button>
                 <button type="button" id="mdfybtn" onclick="location.href='/board/modify'">수정하기</button>
                 <button type="button" id="rmvbtn" >삭제하기</button>
         </td></tr>
@@ -63,6 +63,8 @@
                 <div class="col-auto"><button class="btn btn-dark pushbtm" type="submit" id="newbrbtn">
                     <i class="bi bi-chat-dots"></i> 댓글쓰기</button></div>
             </div>
+            <input type="hidden" name="userid" value="abc123">
+            <input type="hidden" name="bno" value="{{ boards.bno }}">
         </form>
     </div><!-- 댓글쓰기 -->
 

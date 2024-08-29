@@ -5,6 +5,7 @@ from starlette.responses import HTMLResponse, RedirectResponse
 from starlette.templating import Jinja2Templates
 
 from app.dbfactory import get_db
+from app.schema.board import NewReply
 from app.service.board import BoardService
 
 board_router = APIRouter()
@@ -80,5 +81,15 @@ async def find(req: Request, ftype: str, fkey: str, cpg: int, db: Session = Depe
 
     except Exception as ex:
         print(f'▷▷▷ find 오류 발생 : {str(ex)}')
+        return RedirectResponse(url='/member/error', status_code=303)
+
+@board_router.post('/reply', response_class=HTMLResponse)
+async def reply(req: Request, reply: NewReply , db: Session = Depends(get_db)):
+    try:
+        print('==>', reply)
+        return RedirectResponse('/board/list/1.html', 303)
+
+    except Exception as ex:
+        print(f'▷▷▷ reply 오류 발생 : {str(ex)}')
         return RedirectResponse(url='/member/error', status_code=303)
 
