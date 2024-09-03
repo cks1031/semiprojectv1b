@@ -14,7 +14,7 @@ class Gallery(Base):
     userid: Mapped[str] = mapped_column(String(18),ForeignKey('member.userid'), index=True) # 식별관계
     regdate: Mapped[datetime] = mapped_column(default=datetime.now)
     views: Mapped[int] = mapped_column(default=0)
-    contents : Mapped[str] = String(Text)
+    contents : Mapped[str] = mapped_column(Text)
     attachs = relationship('GalAttach', back_populates='gallery') # 하나의 gallery는 하나 이상의 attach가 존재 (1:n)
 
 

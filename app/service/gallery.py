@@ -36,7 +36,7 @@ class GalleryService:
     def insert_gallery(gal, attachs, db):
         try:
             stmt = insert(Gallery).values(userid=gal.userid,
-                                         title=gal.title, contents=gal.contents)
+                     title=gal.title, contents=gal.contents)
             result = db.execute(stmt)
 
             # 방금 생성한 레코드의 기본키 값 : inserted_primary_key
@@ -55,6 +55,7 @@ class GalleryService:
         except SQLAlchemyError as ex:
             print(f'▶▶▶ insert_gallery에서 오류발생 : {str(ex)}')
             db.rollback()
+
 
     @staticmethod
     def select_gallery(cpg , db):
