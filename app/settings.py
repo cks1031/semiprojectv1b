@@ -7,6 +7,6 @@ class Settings(BaseSettings):
     #dbname: str = 'ubuntu'
     dburl: str = 'localhost'    
     dbconn: str = f'sqlite:///app/{dbname}.db'    
-    #dbconn: str = f'mysql+pymysql:{userid}:{passwd}@{dburl}:3306/{dbname}?charset=utf8mb4'
+    #dbconn: str = f'mysql+pymysql://{userid}:{passwd}@{dburl}:3306/{dbname}?charset=utf8mb4'
 
 config = Settings()
